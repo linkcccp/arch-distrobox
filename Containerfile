@@ -143,6 +143,10 @@ RUN su - distrobox-build -c 'paru -S --noconfirm --needed mpv' \
 RUN su - distrobox-build -c 'paru -S --noconfirm --needed bat' \
     && pacman -Scc --noconfirm
 
+# 单独安装 Go 编译器工具链。
+RUN su - distrobox-build -c 'paru -S --noconfirm --needed go' \
+    && pacman -Scc --noconfirm
+
 # 删除临时构建用户及其 sudo 权限。
 RUN rm -f /etc/sudoers.d/distrobox-build \
     && userdel --remove distrobox-build \

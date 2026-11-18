@@ -4,13 +4,13 @@
 
 `Containerfile` 定义了一个使用 Arch Linux 官方镜像的 Distrobox 镜像；构建结束时会把软件源切换为中国大陆官方镜像。
 镜像包含 .NET SDK、通过 rustup 安装的最新 stable Rust 工具链（含 rustfmt、clippy）、
-Git、Git LFS、GitHub CLI（`gh`）、Python 包管理工具 `uv`、默认 shell Fish、`eza`、fastfetch、ouch、终端文件管理器 `yazi`、dotfiles 管理工具 `chezmoi`、`ffmpeg`、`mpv`、`bat`、`nano`、Vim、Neovim 和 Starship，
+Go 编译器工具链、Git、Git LFS、GitHub CLI（`gh`）、Python 包管理工具 `uv`、默认 shell Fish、`eza`、fastfetch、ouch、终端文件管理器 `yazi`、dotfiles 管理工具 `chezmoi`、`ffmpeg`、`mpv`、`bat`、`nano`、Vim、Neovim 和 Starship，
 以及通过 fnm 安装并设为默认的最新 Node.js 26 LTS（Lithium）和通过其 npm 安装的 `pnpm`。`yazi` 同时安装搜索、预览、剪贴板和图标字体等可选依赖。系统级 Fish
 配置会自动加载 fnm 环境。rust-analyzer 由连接到容器的 VS Code
 扩展提供，无需安装在镜像中。Distrobox 默认共享宿主机 Home，因此 Fish 配置和
 `~/.config/starship.toml` 主题配置会直接生效。
 构建时用 pacman 安装基础构建依赖，再从 AUR 构建 paru；之后通过 paru 安装开发工具。
-开发工具（Git、Rust、.NET SDK、Git LFS、GitHub CLI、`uv`、fnm/Node.js、`pnpm`、Fish、`eza`、fastfetch、`ouch`、`yazi`、`chezmoi`、`ffmpeg`、`mpv`、`bat`、`nano`、Vim、Neovim、Starship）分别位于独立层，新增工具时可复用此前未变化的镜像层。
+开发工具（Git、Rust、.NET SDK、Go、Git LFS、GitHub CLI、`uv`、fnm/Node.js、`pnpm`、Fish、`eza`、fastfetch、`ouch`、`yazi`、`chezmoi`、`ffmpeg`、`mpv`、`bat`、`nano`、Vim、Neovim、Starship）分别位于独立层，新增工具时可复用此前未变化的镜像层。
 容器内可直接用 `mpv <文件>` 通过宿主机窗口和音频播放视频，或用 `bat` 代替 `cat` 查看带语法高亮的文件。
 
 ```sh
